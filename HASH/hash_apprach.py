@@ -1,5 +1,5 @@
 import random
-import asyncio
+import time
 import requests
 import json
 
@@ -32,9 +32,9 @@ async def on_message(message):
             if message.embeds:
                 if 'Guess the' in message.embeds[0].description:
                     url = message.embeds[0].image.url
-                    pokemon_name = HashHandler(url).start()
+                    pokemon_name = HashHandler(url).get_pokemon_name()
 
-                    await asyncio.sleep(random.randint(1, 3))
+                    await time.sleep(random.randint(1,3))
 
                     await message.channel.send("p!catch " + pokemon_name)
         await client.process_commands(message)
