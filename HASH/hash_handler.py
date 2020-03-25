@@ -4,6 +4,9 @@ import json
 import requests
 import os
 
+from io import BytesIO
+from PIL import Image
+
 class HashHandler():
     def __init__(self, url):
         self.url = url
@@ -12,17 +15,15 @@ class HashHandler():
             self.pokemon_json = json.load(f)
     
     def get_image(self):
-        self.image = requests.get(self.url)
+        image_url = requests.get(self.url)
+        self.image = Image.open(BytesIO(image_url.content))
 
     def hash_image(self):
-        self.hash = str(imagehash.dhash(image))
+        self.hash = str(imagehash.dhash(self.image))
     
     def get_pokemon_name(self):
-        try:
-            self.pokemon_name = self.pokemon_json[self.hash]
-            print("The pokemon name is: " + self.pokemon_name)
-        except:
-            "The hash could not be found"
+        self.pokemon_name = self.pokemon_json[self.hash]
+        print("The pokemon name is: " + self.pokemon_name)
 
     def start(self):
         self.get_image()

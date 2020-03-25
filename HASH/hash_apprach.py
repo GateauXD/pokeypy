@@ -1,11 +1,11 @@
 import random
 import asyncio
 import requests
+import json
 
 from PIL import Image
 from io import BytesIO
 from hash_handler import HashHandler
-from flash_app import keep_alive
 
 import discord
 from discord.ext import commands
@@ -30,8 +30,8 @@ async def on_message(message):
         if message.channel.id in constants["allowed_channels_ids"]:
             # Checking if there is an image embed in the message
             if message.embeds:
-                if 'Guess the' in message.embed[0].description:
-                    url = message.embed[0].image.url
+                if 'Guess the' in message.embeds[0].description:
+                    url = message.embeds[0].image.url
                     pokemon_name = HashHandler(url).start()
 
                     await asyncio.sleep(random.randint(1, 5))
