@@ -1,8 +1,6 @@
 import random
 import asyncio
 import requests
-import json
-import imagehash
 
 from PIL import Image
 from io import BytesIO
@@ -20,4 +18,6 @@ class BotHandler(discord.Client):
             await self.pokeypy.get_pokemon_name(message)
             return
 
-        await self.client.process_commands(message)
+
+client = BotHandler()
+client.run('token')
