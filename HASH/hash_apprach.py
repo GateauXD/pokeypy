@@ -34,9 +34,9 @@ async def on_message(message):
                     url = message.embeds[0].image.url
                     pokemon_name = HashHandler(url).start()
 
-                    await asyncio.sleep(random.randint(1, 5))
+                    await asyncio.sleep(random.randint(1, 3))
 
-                    await message.channel.send("p!catch " + name)
+                    await message.channel.send("p!catch " + pokemon_name)
         await client.process_commands(message)
 
 client.run(token,bot=False)
