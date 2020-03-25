@@ -1,3 +1,4 @@
 .vscode/
 venv/
 InceptionV3_Pokemon.h5
+*.pyc

@@ -39,5 +39,4 @@ async def on_message(message):
                     await message.channel.send("p!catch " + name)
         await client.process_commands(message)
 
-keep_alive()
 client.run(token,bot=False)
