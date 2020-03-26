@@ -18,11 +18,16 @@ class HashHandler():
             self.caught_json = json.load(j)
     
     def get_pokemon_name(self):
-        image_url = requests.get(self.url)
-        self.image = Image.open(BytesIO(image_url.content))
-        self.hash = str(imagehash.dhash(self.image))
-        self.pokemon_name = self.pokemon_json[self.hash]
-        print("The pokemon name is: " + self.pokemon_name)
+        try:
+            image_url = requests.get(self.url)
+            self.image = Image.open(BytesIO(image_url.content))
+            self.hash = str(imagehash.dhash(self.image))
+            self.pokemon_name = self.pokemon_json[self.hash]
+            print("The pokemon name is: " + self.pokemon_name)
+        except:
+            # TODO add a image hashing function here and add it to the json
+            print("Image has not been hashed")
+            return None
         
         # Checking if pokemon has already caught
         if self.pokemon_name in self.caught_json["list"]:
