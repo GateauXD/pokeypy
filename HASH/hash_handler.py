@@ -15,7 +15,7 @@ class HashHandler():
             self.pokemon_json = json.load(f)
         
         with open("caught_pokemon.json") as j:
-            self.caught_json = json.load(f)
+            self.caught_json = json.load(j)
     
     def get_pokemon_name(self):
         image_url = requests.get(self.url)
@@ -24,10 +24,10 @@ class HashHandler():
         self.pokemon_name = self.pokemon_json[self.hash]
         print("The pokemon name is: " + self.pokemon_name)
 
-        if self.pokemon_name in self.caught_json:
+        if self.pokemon_name in self.caught_json["list"]:
             return None
         else:
-            self.pokemon_json.append(self.pokemon_name)
+            self.pokemon_json["list"].append(self.pokemon_name)
             with open("caught_pokemon.json", 'w') as override_json:
                 json.dump(self.pokemon_json, override)
             return self.pokemon_name
