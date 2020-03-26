@@ -43,7 +43,7 @@ async def on_message(message):
                     url = message.embeds[0].image.url
                     pokemon_name = HashHandler(url).get_pokemon_name()
 
-                    if pokemon_name != None:
+                    if pokemon_name != None or constants["catch"] == True:
                         await asyncio.sleep(random.randint(1,3))
                         await message.channel.send("p!catch " + pokemon_name)
                     else:

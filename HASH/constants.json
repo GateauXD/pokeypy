@@ -2,5 +2,6 @@
     "prefix": "??",
     "token": "NjkyNDk0Mjg4MTk3Nzc5NTc4.XnvVpg.rYuO-4QJT_M9WBZSou6N3Ltigzw",
     "timer": 1,
-    "allowed_channels_ids": [692073641021800552]
+    "allowed_channels_ids": [692073641021800552],
+    "catch": true
   }

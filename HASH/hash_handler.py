@@ -30,6 +30,6 @@ class HashHandler():
         else:
             self.caught_json["list"].append(self.pokemon_name)
             with open("caught_pokemon.json", 'w') as override_json:
-                json.dump(self.pokemon_json, override_json)
+                json.dump(self.caught_json, override_json)
             return self.pokemon_name
     
