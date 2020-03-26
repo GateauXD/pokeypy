@@ -23,11 +23,12 @@ class HashHandler():
         self.hash = str(imagehash.dhash(self.image))
         self.pokemon_name = self.pokemon_json[self.hash]
         print("The pokemon name is: " + self.pokemon_name)
-
+        
+        # Checking if pokemon has already caught
         if self.pokemon_name in self.caught_json["list"]:
             return None
         else:
-            self.pokemon_json["list"].append(self.pokemon_name)
+            self.caught_json["list"].append(self.pokemon_name)
             with open("caught_pokemon.json", 'w') as override_json:
                 json.dump(self.pokemon_json, override)
             return self.pokemon_name
