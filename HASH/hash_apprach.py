@@ -35,7 +35,6 @@ async def on_message(message):
     if message.author.id == 365975655608745985:
         with open('constants.json') as s:
             constants = json.load(s)
-        
         # Checking if in allowed channel
         if message.channel.id in constants["allowed_channels_ids"]:
             # Checking if there is an image embed in the message
@@ -44,9 +43,11 @@ async def on_message(message):
                     url = message.embeds[0].image.url
                     pokemon_name = HashHandler(url).get_pokemon_name()
 
-                    await asyncio.sleep(random.randint(1,3))
-
-                    await message.channel.send("p!catch " + pokemon_name)
+                    if pokemon_name != None:
+                        await asyncio.sleep(random.randint(1,3))
+                        await message.channel.send("p!catch " + pokemon_name)
+                    else:
+                        print("We already have " + pokemon_name)    
         await client.process_commands(message)
 
 client.run(token,bot=False)
