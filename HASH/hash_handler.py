@@ -33,7 +33,7 @@ class HashHandler():
             return None
         
         # Checking if pokemon has already caught
-        if self.pokemon_name in self.caught_json["list"] and self.constants["catch"] == False:
+        if self.pokemon_name in self.caught_json["list"] or self.constants["catch"] == False:
             return None
         else:
             self.caught_json["list"].append(self.pokemon_name)

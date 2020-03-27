@@ -46,7 +46,7 @@ async def on_message(message):
                         await asyncio.sleep(random.randint(1,3))
                         await message.channel.send("p!catch " + pokemon_name)
                     else:
-                        print("We already have that pokemon or it couldn't be hashed")    
+                        print("We already have that pokemon")    
         await client.process_commands(message)
 
 client.run(token,bot=False)
