@@ -42,12 +42,11 @@ async def on_message(message):
                 if 'Guess the' in message.embeds[0].description:
                     url = message.embeds[0].image.url
                     pokemon_name = HashHandler(url).get_pokemon_name()
-
                     if pokemon_name != None and constants["catch"] == True:
                         await asyncio.sleep(random.randint(1,3))
                         await message.channel.send("p!catch " + pokemon_name)
                     else:
-                        print("We already have that pokemon")    
+                        print("We already have that pokemon or it couldn't be hashed")    
         await client.process_commands(message)
 
 client.run(token,bot=False)

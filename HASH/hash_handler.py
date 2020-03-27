@@ -16,12 +16,15 @@ class HashHandler():
         
         with open("caught_pokemon.json") as j:
             self.caught_json = json.load(j)
+        
+        with open('constants.json') as s:
+            self.constants = json.load(s)
     
     def get_pokemon_name(self):
         try:
             image_url = requests.get(self.url)
             self.image = Image.open(BytesIO(image_url.content))
-            self.hash = str(imagehash.dhash(self.image))
+            self.hash = str(imagehash.dhash(self.image, 16))
             self.pokemon_name = self.pokemon_json[self.hash]
             print("The pokemon name is: " + self.pokemon_name)
         except:
@@ -30,7 +33,7 @@ class HashHandler():
             return None
         
         # Checking if pokemon has already caught
-        if self.pokemon_name in self.caught_json["list"]:
+        if self.pokemon_name in self.caught_json["list"] and self.constants["catch"] == False:
             return None
         else:
             self.caught_json["list"].append(self.pokemon_name)
