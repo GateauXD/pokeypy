@@ -1,4 +1,5 @@
 .vscode/
 venv/
 InceptionV3_Pokemon.h5
+HASH/GetHashes/Pokemon
 *.pyc
