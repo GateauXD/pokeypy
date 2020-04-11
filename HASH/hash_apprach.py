@@ -55,7 +55,11 @@ async def on_message(message):
                     reader = csv.reader(lines)
                     parsed_csv = list(reader)
 
-                    # TODO Append the entries to a CSV
+                    # Append pokemon and their stats to a CSV
+                    pokemon_csv = open("my_pokemon.csv", 'a', encoding='utf-8', newline='')
+                    with pokemon_csv:
+                        writer = csv.writer(pokemon_csv, delimiter=',')
+                        writer.writerows(parsed_csv)
 
         await client.process_commands(message)
 
