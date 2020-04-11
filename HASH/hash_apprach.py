@@ -23,7 +23,7 @@ async def on_ready():
 
     print(f'{client.user.name} logged in!')
     channel = client.get_channel(constants["allowed_channels_ids"][0])
-    while True:
+    while constants["spam"]:
         letters = string.ascii_lowercase
         spam_text = ''.join(random.choice(letters) for i in range(random.randint(5,20)))
         await channel.send(spam_text)
