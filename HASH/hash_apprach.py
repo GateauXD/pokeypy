@@ -3,6 +3,7 @@ import random
 import asyncio
 import requests
 import json
+import csv
 
 from PIL import Image
 from io import BytesIO
@@ -49,8 +50,13 @@ async def on_message(message):
                         print("We already have that pokemon")
                 elif message.embeds[0].title == "Your pokémon:":
                     stringify_pokemon = message.embeds[0].description
-                    print(stringify_pokemon)
-                
+                    stringify_pokemon = stringify_pokemon.replace('|', ',').replace('*', '')
+                    lines = stringify_pokemon.splitlines()
+                    reader = csv.reader(lines)
+                    parsed_csv = list(reader)
+
+                    # TODO Append the entries to a CSV
+
         await client.process_commands(message)
 
 client.run(token,bot=False)
